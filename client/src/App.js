@@ -1,23 +1,27 @@
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import React,{ useState } from "react";
+import Home from './Common/Home';
+import Movies from './Common/Movies';
+import NotFound from './Common/NotFound';
+import "./App.css";
+import NavBar from './Common/Navbar';
+
+export const movieContext = React.createContext();
 
 function App() {
-
-  const movies = [
-    {title: "Mean Girls"},
-    {title: "Hackers"},
-    {title: "The Grey"},
-    {title: "Sunshine"},
-    {title: "Ex Machina"},
-  ]
+  const [movies, setMovies] = useState();
+  const url = "http://localhost:3001/" 
 
   return (
-    <div className="App">
-      <ul>
-        {movies.map((movie, i)=> 
-          <li key={i}>{movie.title}</li>
-        )}
-      </ul>
-
+    <div className='app-wrapper'>
+      <movieContext.Provider value={{ movies, setMovies, url }}>
+        <NavBar />
+        <Routes>
+          <Route exact path='/' element={<Home />}/>
+          <Route path='./Movies/:id' element={<Movies/>}/>
+          <Route path='/*' element={<NotFound />}/>
+        </Routes>
+      </movieContext.Provider>
     </div>
   );
 }
