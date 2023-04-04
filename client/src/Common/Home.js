@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import { movieContext } from "../App";
 import "./common.css";
+import AddMovies from "./AddMovies";
 
 const Home = () => {
   const { movies, setMovies, url } = useContext(movieContext);
@@ -15,7 +16,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home-wrapper">
+    <div>
       <h2>Movie List</h2>
       <ul>
         {movies ? (
@@ -26,6 +27,9 @@ const Home = () => {
           <pre>loading...</pre>
         )}
       </ul>
+      <div>
+        <AddMovies />
+      </div>
     </div>
   );
 };

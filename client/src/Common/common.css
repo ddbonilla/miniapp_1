@@ -8,7 +8,11 @@
   padding: 5px;
 }
 
-form {
+.add-wrapper {
+  margin: 40px
+}
+
+.nav-form {
   margin-right: 20px;
 }
 .search-bar {
@@ -18,7 +22,7 @@ form {
 }
 
 button {
-  float: right;
+  margin-left: 5px;
 }
 
 ul {

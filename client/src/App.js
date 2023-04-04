@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import React,{ useState } from "react";
 import Home from './Common/Home';
-import Movies from './Common/Movies';
+import AddMovies from './Common/AddMovies';
 import NotFound from './Common/NotFound';
 import "./App.css";
 import NavBar from './Common/Navbar';
@@ -18,7 +18,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route exact path='/' element={<Home />}/>
-          <Route path='./Movies/:id' element={<Movies/>}/>
+          {/* <Route path='./Movies/:id' element={<AddMovies/>}/> */}
           <Route path='/*' element={<NotFound />}/>
         </Routes>
       </movieContext.Provider>

@@ -17,7 +17,7 @@ const NavBar = () => {
   return (
     <>
       <div className="navbar-wrapper">
-        <form>
+        <form className="nav-form">
           <input 
               type="text" 
               className="search-bar" 
