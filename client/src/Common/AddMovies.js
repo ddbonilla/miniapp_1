@@ -4,40 +4,47 @@ import { movieContext } from "../App";
 const AddMovies = () => {
   const { url } = useContext(movieContext);
 
-  const [ title, setTitle ] = useState('');
+  const [title, setTitle] = useState("");
+  const [isPending, setIsPending] = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    
-    const entry = {title};
+    e.preventDefault();
+
+    if (title !== "") {
+      handlePosting();
+    } else {
+      alert("Please add a movie title");
+    }
+  };
+
+  const handlePosting = () => {
+    const entry = { title };
+    setIsPending(true);
 
     fetch(`${url}movies`, {
-      method: 'POST',
-      headers: {"Content-type" : "application/json"},
-      body: JSON.stringify(entry)
-
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(entry),
     }).then(() => {
-      console.log('new movie added');
-    })
-
-  } 
+      console.log("new movie added");
+      setIsPending(false);
+    });
+  };
 
   return (
     <div className="add-wrapper">
-      <form 
-        className="add-form"
-        onSubmit={handleSubmit}
-      >
-        <input 
+      <form className="add-form" onSubmit={handleSubmit}>
+        <input
           type="text"
           placeholder="Movie Name..."
-          onChange={ (e) => setTitle(e.target.value)}
-          value = {title}
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
         />
-        <button>Add</button>
+        {!isPending && <button>Add Movie</button>}
+        {isPending && <button disabled>Adding Movie...</button>}
       </form>
     </div>
   );
-}
- 
+};
+
 export default AddMovies;

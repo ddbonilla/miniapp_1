@@ -1,7 +1,8 @@
 import { useEffect, useContext } from "react";
 import { movieContext } from "../App";
-import "./common.css";
 import AddMovies from "./AddMovies";
+import DeleteMovies from "./DeleteMovies";
+import "./common.css";
 
 const Home = () => {
   const { movies, setMovies, url } = useContext(movieContext);
@@ -21,7 +22,12 @@ const Home = () => {
       <ul>
         {movies ? (
           movies.map((movie, i) => {
-            return <li key={i}>{movie.title}</li>;
+            return (
+              <div className="movie-list">
+                <DeleteMovies id={movie.id}/>
+                <li key={i}>{movie.title}</li> 
+              </div>
+            )
           })
         ) : (
           <pre>loading...</pre>
